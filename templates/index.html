@@ -1,0 +1,141 @@
+{% extends 'base.html' %} {% block content %}
+<!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width: 1400px">
+  <!-- The Grid -->
+  <div class="w3-row-padding">
+    <!-- Left Column -->
+
+    <div class="w3-third">
+      {% for profile in profiles%}
+      <div class="w3-white w3-text-grey w3-card-4">
+        <div class="w3-display-container">
+          <img src="{{profile.photo.url}}" style="width: 100%" alt="Avatar" />
+          <div class="w3-display-bottomleft w3-container w3-text-black">
+            <h2>{{profile.name}}</h2>
+          </div>
+        </div>
+        <div class="w3-container">
+          <p>
+            <i
+              class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"
+            ></i
+            >{{profile.role}}
+          </p>
+          <p>
+            <i
+              class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"
+            ></i
+            >{{profile.address}}
+          </p>
+          <p>
+            <i
+              class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"
+            ></i
+            >{{profile.email}}
+          </p>
+          <p>
+            <i
+              class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"
+            ></i
+            >{{profile.phone}}
+          </p>
+          <hr />
+        {% endfor %}
+          <p class="w3-large">
+            <b
+              ><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i
+              >Skills</b
+            >
+
+          </p>
+          {% for skill in skills %}
+          <p>{{skill.skill_name}}</p>
+          <div class="w3-light-grey w3-round-xlarge w3-small">
+            <div
+              class="w3-container w3-center w3-round-xlarge w3-teal"
+              style="height: 24px; width: {{skill.skill_percentage}}%"
+            >
+            </div>
+          </div>
+          {% endfor %}
+          <br />
+
+          <p class="w3-large w3-text-theme">
+            <b
+              ><i class="fa fa-globe fa-fw w3-margin-right w3-text-teal"></i
+              >Languages</b
+            >
+          </p>
+          {% for language in languages %}
+          <p>{{language.language_name}}</p>
+          <div class="w3-light-grey w3-round-xlarge">
+            <div
+              class="w3-container w3-center w3-round-xlarge w3-teal"
+              style="height: 24px; width: {{language.language_percentage}}%"
+            >
+            </div>
+          </div>
+          {% endfor %}
+          <br />
+        </div>
+      </div>
+      <br />
+
+      <!-- End Left Column -->
+    </div>
+
+    <!-- Right Column -->
+    <div class="w3-twothird">
+      <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16">
+          <i
+            class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"
+          ></i
+          >Work Experience
+        </h2>
+        {% for exp in work %}
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>{{exp.designation}} at {{exp.company_name}}</b></h5>
+          <h6 class="w3-text-teal">
+            <i class="fa fa-calendar fa-fw w3-margin-right"></i>{{exp.start_date}} -- {% if exp.end_date %} {{exp.end_date}}
+            {% else %}
+            <span class="w3-tag w3-teal w3-round"> Current </span>
+            {% endif %}
+          </h6>
+          <p>
+            {{exp.description}}
+          </p>
+          <hr />
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="w3-container w3-card w3-white">
+        <h2 class="w3-text-grey w3-padding-16">
+          <i
+            class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"
+          ></i
+          >Education
+        </h2>
+        {% for edu in education %}
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>{{edu.name}}</b></h5>
+          <h6 class="w3-text-teal">
+            <i class="fa fa-calendar fa-fw w3-margin-right"></i>{{ edu.start_date}} -- {{ edu.end_date}}
+          </h6>
+          <p>{{edu.degree_name}}</p>
+          <hr />
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- End Right Column -->
+    </div>
+
+    <!-- End Grid -->
+  </div>
+
+  <!-- End Page Container -->
+</div>
+
+{% endblock %}
